@@ -1,18 +1,62 @@
 @import '../../../config-scss/rem-calc.scss';
 
 :host{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
   .pokemon{
     background-color: var(--white);
+    position: relative;
     display: flex;
+    gap: 1rem;
+    box-sizing: border-box;
     width: 49%;
+    height: rem-calc(160);
     border-radius: rem-calc(10);
     padding: rem-calc(20);
+    margin-top: 1rem;
 
     &__status {
       h2 {
         font-size: rem-calc(22);
         font-style: italic;
-        font-weight: 900;
+        font-weight: 700;
+        margin-bottom: rem-calc(10);
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+          background-color: var(--gray);
+          font-size: rem-calc(10);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: rem-calc(50);
+          width: rem-calc(60);
+          height: rem-calc(20);
+          margin-bottom: rem-calc(5);
+        }
+      }
+    }
+
+    &__image {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: rem-calc(20);
+      right: rem-calc(20);
+      background-image: url('../../../assets/bolinhas.svg');
+      background-repeat: no-repeat;
+      height: rem-calc(90);
+      width: rem-calc(110);
+
+      img {
+        width: rem-calc(80);
       }
     }
   }
