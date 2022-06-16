@@ -38,7 +38,10 @@
         position: absolute;
         // top: rem-cal(-300);
         left: rem-calc(30);
-        max-width: rem-calc(200);
+        max-width: rem-calc(240);
+        max-height: rem-calc(210);
+        aspect-ratio: 1/1;
+        object-fit: contain;
         margin-top: -5rem;
       }
 

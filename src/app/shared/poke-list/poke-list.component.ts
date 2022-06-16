@@ -12,6 +12,7 @@ export class PokeListComponent implements OnInit {
   public getAllPokemons: any
 
   public apiError: boolean = false
+  public listError: boolean = false
 
   constructor(private poke: PokeApiService) { }
 
@@ -28,12 +29,17 @@ export class PokeListComponent implements OnInit {
   }
 
   public getSearch(value: string) {
-    // console.log(value)
     const filter = this.setAllPokemons.filter((resp: any) => {
       return !resp.name.indexOf(value.toLowerCase())
     });
 
-    this.getAllPokemons = filter
+    if(filter.length >0){
+      this.getAllPokemons = filter
+      this.listError = false
+    } else {
+      this.getAllPokemons = []
+      this.listError = true
+    }
   }
 
 
