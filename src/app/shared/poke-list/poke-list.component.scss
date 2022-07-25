@@ -15,6 +15,7 @@
       box-sizing: border-box;
       width: 31.4%;
       height: rem-calc(160);
+      /* height: 10rem */
       border-radius: rem-calc(10);
       padding: rem-calc(20);
       text-decoration: none;
@@ -80,5 +81,11 @@
     width: 50%;
     height: auto;
     object-fit: cover;
+  }
+
+  .margem {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }

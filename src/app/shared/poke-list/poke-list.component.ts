@@ -4,43 +4,62 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'poke-list',
   templateUrl: './poke-list.component.html',
-  styleUrls: ['./poke-list.component.scss']
+  styleUrls: ['./poke-list.component.scss'],
 })
 export class PokeListComponent implements OnInit {
+  private setAllPokemons: any;
+  public getAllPokemons: any;
 
-  private setAllPokemons: any
-  public getAllPokemons: any
+  public apiError: boolean = false;
+  public listError: boolean = false;
 
-  public apiError: boolean = false
-  public listError: boolean = false
+  collection: any = [];
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [5, 10, 15, 20];
 
-  constructor(private poke: PokeApiService) { }
+  constructor(private poke: PokeApiService) {}
 
   ngOnInit() {
+    this.pushPokemons();
+  }
+
+  pushPokemons() {
     this.poke.apiListAllPokemons.subscribe({
-      next: res => {
-        this.setAllPokemons = res.results
-        this.getAllPokemons = this.setAllPokemons
+      next: (res) => {
+        this.setAllPokemons = res.results;
+        this.getAllPokemons = this.setAllPokemons;
+        console.log(res.results);
       },
-      error: error => {
-        this.apiError = true
-      }
-    })
+      error: (error) => {
+        this.apiError = true;
+      },
+    });
   }
 
   public getSearch(value: string) {
     const filter = this.setAllPokemons.filter((resp: any) => {
-      return !resp.name.indexOf(value.toLowerCase())
+      return !resp.name.indexOf(value.toLowerCase());
     });
 
-    if(filter.length >0){
-      this.getAllPokemons = filter
-      this.listError = false
+    if (filter.length > 0) {
+      this.getAllPokemons = filter;
+      this.listError = false;
     } else {
-      this.getAllPokemons = []
-      this.listError = true
+      this.getAllPokemons = [];
+      this.listError = true;
     }
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getAllPokemons;
+  }
 
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getAllPokemons;
+  }
 }

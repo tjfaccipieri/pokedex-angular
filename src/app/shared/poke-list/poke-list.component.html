@@ -1,7 +1,8 @@
 <poke-search (emitSearch)="getSearch($event)"></poke-search>
 
 <section class="listagem">
-  <ng-template ngFor let-pokemon [ngForOf]="getAllPokemons">
+  <ng-template ngFor let-pokemon [ngForOf]="getAllPokemons | paginate: {itemsPerPage: 9, currentPage : page}">
+  <!-- <ng-template *ngFor='let pokemon of getAllPokemons '> -->
     <a
       [routerLink]="['/details', pokemon.status.id]"
       class="pokemon"
@@ -25,6 +26,9 @@
       </section>
     </a>
   </ng-template>
+  <div class="margem">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
   <img src="assets/error.png" alt="Deu ruim" width="100%" *ngIf="apiError" />
   <img src="assets/listError.png" alt="Deu ruim" class="imgError" *ngIf="listError" />
 </section>
