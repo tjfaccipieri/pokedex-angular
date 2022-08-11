@@ -19,6 +19,13 @@ export class PokeListComponent implements OnInit {
   tableSize: number = 10;
   tableSizes: any = [5, 10, 15, 20];
 
+  config = {
+    id: 'custom',
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: this.collection.count
+  };
+
   constructor(private poke: PokeApiService) {}
 
   ngOnInit() {
@@ -31,6 +38,7 @@ export class PokeListComponent implements OnInit {
         this.setAllPokemons = res.results;
         this.getAllPokemons = this.setAllPokemons;
         console.log(res.results);
+        this.collection = this.getAllPokemons
       },
       error: (error) => {
         this.apiError = true;

@@ -28,6 +28,7 @@
   </ng-template>
   <div class="margem">
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
   </div>
   <img src="assets/error.png" alt="Deu ruim" width="100%" *ngIf="apiError" />
   <img src="assets/listError.png" alt="Deu ruim" class="imgError" *ngIf="listError" />
